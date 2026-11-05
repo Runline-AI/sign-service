@@ -10,11 +10,12 @@ import { useEffect } from 'react';
 import { isRouteErrorResponse, Link, Outlet } from 'react-router';
 import { Header as AuthenticatedHeader } from '~/components/general/app-header';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
+import { SourceAttribution } from '~/components/general/source-attribution';
 import type { Route } from './+types/_layout';
 
 export function meta() {
   return [
-    { title: i18n._(msg`Sign Document - Documenso`) },
+    { title: i18n._(msg`Sign Document · Runline Sign`) },
     { name: 'robots', content: 'noindex, nofollow, noarchive, nosnippet, noimageindex' },
   ];
 }
@@ -45,6 +46,13 @@ export default function RecipientLayout({ matches }: Route.ComponentProps) {
       >
         <Outlet />
       </main>
+
+      {/* Not on the full-viewport signing views; signers see it on the completion and disclosure pages. */}
+      {!hideHeader && (
+        <footer className="px-4 pt-2 pb-6">
+          <SourceAttribution />
+        </footer>
+      )}
     </div>
   );
 }

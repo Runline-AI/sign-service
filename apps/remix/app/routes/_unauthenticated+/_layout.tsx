@@ -2,6 +2,7 @@ import backgroundPattern from '@documenso/assets/images/background-pattern.png';
 import { Outlet } from 'react-router';
 
 import { PublicLegalLinks } from '~/components/general/public-legal-links';
+import { SourceAttribution } from '~/components/general/source-attribution';
 
 export default function Layout() {
   return (
@@ -26,6 +27,7 @@ export default function Layout() {
 
       <footer className="z-10 mt-8 w-full">
         <PublicLegalLinks />
+        <SourceAttribution className="mt-4" />
       </footer>
     </main>
   );

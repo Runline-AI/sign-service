@@ -10,6 +10,7 @@ import { Trans } from '@lingui/react/macro';
 import { Link, Outlet } from 'react-router';
 
 import { AppBanner } from '~/components/general/app-banner';
+import { SourceAttribution } from '~/components/general/source-attribution';
 import { Header } from '~/components/general/app-header';
 import { GenericErrorLayout } from '~/components/general/generic-error-layout';
 import { OrganisationBillingBanner } from '~/components/general/organisations/organisation-billing-banner';
@@ -127,6 +128,13 @@ export default function Layout({ loaderData, params, matches }: Route.ComponentP
           >
             <Outlet />
           </main>
+
+          {/* Not on full-viewport routes (editor), which hide the header and size to the screen. */}
+          {!hideHeader && layoutMode !== 'settings' && (
+            <footer className="pb-6">
+              <SourceAttribution />
+            </footer>
+          )}
         </div>
       </TeamProvider>
     </OrganisationProvider>

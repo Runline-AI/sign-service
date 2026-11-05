@@ -20,33 +20,33 @@ import type { TCssVarsSchema } from '../types/css-vars';
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 export const DEFAULT_BRAND_COLORS = {
-  background: '#ffffff', //              0 0% 100%
-  foreground: '#0f172a', //              222.2 47.4% 11.2%
-  muted: '#f1f5f9', //                   210 40% 96.1%
-  mutedForeground: '#64748b', //         215.4 16.3% 46.9%
-  popover: '#ffffff', //                 0 0% 100%
-  popoverForeground: '#0f172a', //       222.2 47.4% 11.2%
-  card: '#ffffff', //                    0 0% 100%
-  cardBorder: '#e2e8f0', //              214.3 31.8% 91.4%
-  cardForeground: '#0f172a', //          222.2 47.4% 11.2%
-  fieldCard: '#e2f8d3', //               95 74% 90%
-  fieldCardBorder: '#a2e771', //         95.08 71.08% 67.45%
-  fieldCardForeground: '#0f172a', //     222.2 47.4% 11.2%
+  background: '#fafafa', // 0 0% 98%
+  foreground: '#0a0a0b', // 240 4.8% 4.1%
+  muted: '#f6f6f7', // 240 5.9% 96.7%
+  mutedForeground: '#5b5b63', // 240 4.2% 37.3%
+  popover: '#ffffff', // 0 0% 100%
+  popoverForeground: '#0a0a0b', // 240 4.8% 4.1%
+  card: '#ffffff', // 0 0% 100%
+  cardBorder: '#d8d8dd', // 240 6.8% 85.7%
+  cardForeground: '#0a0a0b', // 240 4.8% 4.1%
+  fieldCard: '#f8ebfe', // 281.1 90.5% 95.9%
+  fieldCardBorder: '#c75cf9', // 280.9 92.9% 66.9%
+  fieldCardForeground: '#0a0a0b', // 240 4.8% 4.1%
   widget: '#f7f7f7', //                  0 0% 97%
   widgetForeground: '#f2f2f2', //        0 0% 95%
-  border: '#e2e8f0', //                  214.3 31.8% 91.4%
-  input: '#e2e8f0', //                   214.3 31.8% 91.4%
-  primary: '#a2e771', //                 95.08 71.08% 67.45%
-  primaryForeground: '#162c07', //       95.08 71.08% 10%
-  secondary: '#f1f5f9', //               210 40% 96.1%
-  secondaryForeground: '#0f172a', //     222.2 47.4% 11.2%
-  accent: '#f1f5f9', //                  210 40% 96.1%
-  accentForeground: '#0f172a', //        222.2 47.4% 11.2%
+  border: '#d8d8dd', // 240 6.8% 85.7%
+  input: '#b6b6bd', // 240 5% 72.7%
+  primary: '#0a0a0b', // 240 4.8% 4.1%
+  primaryForeground: '#ffffff', // 0 0% 100%
+  secondary: '#f6f6f7', // 240 5.9% 96.7%
+  secondaryForeground: '#0a0a0b', // 240 4.8% 4.1%
+  accent: '#f8e4ff', // 284.4 100% 94.7%
+  accentForeground: '#0a0a0b', // 240 4.8% 4.1%
   destructive: '#ff0000', //             0 100% 50%
   destructiveForeground: '#f8fafc', //   210 40% 98%
-  ring: '#a2e771', //                    95.08 71.08% 67.45%
+  ring: '#c75cf9', // 280.9 92.9% 66.9%
   warning: '#e1cb05', //                 54 96% 45%
-  envelopeEditorBackground: '#f8fafc', //210 40% 98.04%
+  envelopeEditorBackground: '#fafafa', // 0 0% 98%
   // `cardBorderTint` is intentionally excluded from the colour-picker UI:
   // unlike the rest of these tokens it is consumed via `rgb(var(--token))`
   // (not `hsl(...)`) and stored as raw RGB triplets in `theme.css`. It does
@@ -55,4 +55,4 @@ export const DEFAULT_BRAND_COLORS = {
   // `DEFAULT_BRAND_RADIUS` below.
 } as const satisfies Record<keyof Omit<TCssVarsSchema, 'radius' | 'cardBorderTint'>, string>;
 
-export const DEFAULT_BRAND_RADIUS = '0.5rem';
+export const DEFAULT_BRAND_RADIUS = '0.875rem';
