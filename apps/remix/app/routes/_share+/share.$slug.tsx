@@ -12,15 +12,15 @@ export function meta({ params: { slug } }: Route.MetaArgs) {
   }
 
   return [
-    { title: 'Documenso - Share' },
-    { description: 'I just signed a document in style with Documenso!' },
+    { title: 'Runline Sign · Share' },
+    { description: 'Signed with Runline Sign.' },
     {
       property: 'og:title',
-      content: 'Documenso - Join the open source signing revolution',
+      content: 'Runline Sign',
     },
     {
       property: 'og:description',
-      content: 'I just signed with Documenso!',
+      content: 'Signed with Runline Sign.',
     },
     {
       property: 'og:type',
@@ -29,10 +29,6 @@ export function meta({ params: { slug } }: Route.MetaArgs) {
     {
       property: 'og:image',
       content: `${NEXT_PUBLIC_WEBAPP_URL()}/share/${slug}/opengraph`,
-    },
-    {
-      name: 'twitter:site',
-      content: '@documenso',
     },
     {
       name: 'twitter:card',
@@ -44,7 +40,7 @@ export function meta({ params: { slug } }: Route.MetaArgs) {
     },
     {
       name: 'twitter:description',
-      content: 'I just signed with Documenso!',
+      content: 'Signed with Runline Sign.',
     },
   ];
 }

@@ -64,9 +64,9 @@ export const TemplateFooter = ({ isDocument = true, reportUrl }: TemplateFooterP
 
       {!branding.brandingEnabled && (
         <Text className="my-8 text-muted-foreground text-sm">
-          Documenso, Inc.
+          Runline
           <br />
-          2261 Market Street, #5211, San Francisco, CA 94114, USA
+          runlineai.com
         </Text>
       )}
     </Section>

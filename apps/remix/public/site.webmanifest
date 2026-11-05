@@ -1,6 +1,6 @@
 {
-  "name": "Documenso",
-  "short_name": "Documenso",
+  "name": "Runline Sign",
+  "short_name": "Runline Sign",
   "icons": [
     {
       "src": "./android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#A2E771",
-  "background_color": "#FFFFFF",
+  "theme_color": "#0A0A0B",
+  "background_color": "#FAFAFA",
   "display": "standalone"
 }
