@@ -129,7 +129,8 @@ export default function Layout({ loaderData, params, matches }: Route.ComponentP
             <Outlet />
           </main>
 
-          {layoutMode !== 'settings' && (
+          {/* Not on full-viewport routes (editor), which hide the header and size to the screen. */}
+          {!hideHeader && layoutMode !== 'settings' && (
             <footer className="pb-6">
               <SourceAttribution />
             </footer>

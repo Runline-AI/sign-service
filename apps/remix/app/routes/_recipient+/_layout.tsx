@@ -47,9 +47,12 @@ export default function RecipientLayout({ matches }: Route.ComponentProps) {
         <Outlet />
       </main>
 
-      <footer className="px-4 pt-2 pb-6">
-        <SourceAttribution />
-      </footer>
+      {/* Not on the full-viewport signing views; signers see it on the completion and disclosure pages. */}
+      {!hideHeader && (
+        <footer className="px-4 pt-2 pb-6">
+          <SourceAttribution />
+        </footer>
+      )}
     </div>
   );
 }
