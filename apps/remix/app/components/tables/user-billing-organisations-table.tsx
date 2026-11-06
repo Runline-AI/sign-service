@@ -1,5 +1,5 @@
 import { useSession } from '@documenso/lib/client-only/providers/session';
-import { NEXT_PUBLIC_WEBAPP_URL } from '@documenso/lib/constants/app';
+import { IS_BILLING_ENABLED, NEXT_PUBLIC_WEBAPP_URL } from '@documenso/lib/constants/app';
 import { formatAvatarUrl } from '@documenso/lib/utils/avatars';
 import { isOrganisationPendingPayment } from '@documenso/lib/utils/billing';
 import { canExecuteOrganisationAction } from '@documenso/lib/utils/organisations';
@@ -37,6 +37,14 @@ export const UserBillingOrganisationsTable = () => {
         variant: 'neutral' as const,
       }))
       .otherwise(() => {
+        // Self-hosted (billing off): there are no plans, so don't label orgs "Free".
+        if (!IS_BILLING_ENABLED()) {
+          return {
+            label: t({ message: `Self-hosted`, context: `Subscription status` }),
+            variant: 'neutral' as const,
+          };
+        }
+
         if (isOrganisationPendingPayment(organisation)) {
           return {
             label: t({ message: `Free (Pending)`, context: `Subscription status` }),

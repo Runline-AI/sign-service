@@ -1,4 +1,5 @@
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
 import { canExecuteOrganisationAction } from '@documenso/lib/utils/organisations';
 import { trpc } from '@documenso/trpc/react';
 import { msg } from '@lingui/core/macro';
@@ -29,9 +30,14 @@ export default function TeamsSettingBillingPage() {
   const utils = trpc.useUtils();
 
   const { data: subscriptionQuery, isLoading: isLoadingSubscription } =
-    trpc.enterprise.billing.subscription.get.useQuery({
-      organisationId: organisation.id,
-    });
+    trpc.enterprise.billing.subscription.get.useQuery(
+      {
+        organisationId: organisation.id,
+      },
+      {
+        enabled: IS_BILLING_ENABLED(),
+      },
+    );
 
   const { mutateAsync: syncSubscription, isPending: isSyncingSubscription } =
     trpc.enterprise.billing.subscription.sync.useMutation();
@@ -68,6 +74,20 @@ export default function TeamsSettingBillingPage() {
         );
       });
   }, [isCheckoutSuccess, organisation.id]);
+
+  // Self-hosted (billing off): there are no plans or billing, and the billing API is disabled.
+  if (!IS_BILLING_ENABLED()) {
+    return (
+      <div>
+        <h3 className="font-semibold text-2xl">
+          <Trans>Billing</Trans>
+        </h3>
+        <p className="mt-2 text-muted-foreground text-sm">
+          <Trans>This is a self-hosted instance, so there is no plan or billing.</Trans>
+        </p>
+      </div>
+    );
+  }
 
   if (isLoadingSubscription || !subscriptionQuery || isSyncingSubscription) {
     return (
