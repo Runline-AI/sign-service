@@ -72,7 +72,9 @@ export const IS_DOCUMENSO_CLOUD = () => env('NEXT_PUBLIC_IS_DOCUMENSO_CLOUD') ==
 export const API_V2_BETA_URL = '/api/v2-beta';
 export const API_V2_URL = '/api/v2';
 
-export const SUPPORT_EMAIL = env('NEXT_PUBLIC_SUPPORT_EMAIL') || '';
+// Runline's signer-facing support inbox (signature disclosure, report page, account emails).
+// NEXT_PUBLIC_SUPPORT_EMAIL overrides it per deployment.
+export const SUPPORT_EMAIL = env('NEXT_PUBLIC_SUPPORT_EMAIL') || 'support@runlineai.com';
 
 export const USE_INTERNAL_URL_BROWSERLESS = () => env('NEXT_PUBLIC_USE_INTERNAL_URL_BROWSERLESS') === 'true';
 
