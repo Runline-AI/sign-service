@@ -74,3 +74,6 @@ tmp/
 
 # opencode
 .opencode/package-lock.json
+
+# Runline: licensed fonts are injected at deploy, never committed here
+apps/remix/public/fonts/pp-mori/
