@@ -1,4 +1,5 @@
 import { useCurrentOrganisation } from '@documenso/lib/client-only/providers/organisation';
+import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
 import { canExecuteOrganisationAction } from '@documenso/lib/utils/organisations';
 import { trpc } from '@documenso/trpc/react';
 import { msg } from '@lingui/core/macro';
@@ -96,7 +97,13 @@ export default function TeamsSettingBillingPage() {
           </h3>
 
           <div className="mt-2 text-muted-foreground text-sm">
-            {!organisationSubscription && (
+            {!organisationSubscription && !IS_BILLING_ENABLED() && (
+              <p>
+                <Trans>This is a self-hosted instance, so there is no plan or billing.</Trans>
+              </p>
+            )}
+
+            {!organisationSubscription && IS_BILLING_ENABLED() && (
               <p>
                 <Trans>
                   You are currently on the <span className="font-semibold">Free Plan</span>.

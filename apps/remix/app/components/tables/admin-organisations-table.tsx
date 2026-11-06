@@ -1,4 +1,5 @@
 import { useUpdateSearchParams } from '@documenso/lib/client-only/hooks/use-update-search-params';
+import { IS_BILLING_ENABLED } from '@documenso/lib/constants/app';
 import { SUBSCRIPTION_STATUS_MAP } from '@documenso/lib/constants/billing';
 import { ZUrlSearchParamsSchema } from '@documenso/lib/types/search-params';
 import { trpc } from '@documenso/trpc/react';
@@ -110,6 +111,15 @@ export const AdminOrganisationsTable = ({
         id: 'billingStatus',
         header: t`Status`,
         cell: ({ row }) => {
+          // Self-hosted (billing off): there are no plans, so don't label orgs "Free".
+          if (!IS_BILLING_ENABLED()) {
+            return (
+              <div className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 font-medium text-gray-800 text-xs">
+                <Trans context="Subscription status">Self-hosted</Trans>
+              </div>
+            );
+          }
+
           const subscription = row.original.subscription;
           const isPaid = subscription && subscription.status === 'ACTIVE';
           return (
