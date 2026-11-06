@@ -123,13 +123,16 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      // Runline: UI corners are sharp. Every step follows --radius (0 by default), so org branding
+      // can still set one radius for its signing pages. rounded-full stays round for avatars.
       borderRadius: {
-        DEFAULT: 'calc(var(--radius) - 3px)',
-        '2xl': 'calc(var(--radius) + 4px)',
-        xl: 'calc(var(--radius) + 2px)',
+        DEFAULT: 'var(--radius)',
+        '3xl': 'var(--radius)',
+        '2xl': 'var(--radius)',
+        xl: 'var(--radius)',
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'var(--radius)',
+        sm: 'var(--radius)',
       },
       keyframes: {
         'accordion-down': {

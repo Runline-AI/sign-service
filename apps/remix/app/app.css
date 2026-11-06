@@ -63,27 +63,13 @@
 }
 
 /* PP Mori (Pangram Pangram) is licensed to Runline and is NOT in this public repo. Runline's deploy
-   places the files in public/fonts/pp-mori/; without them, text falls back to Inter. */
-@font-face {
-  font-family: "PP Mori";
-  src: url("/fonts/pp-mori/PPMori-400.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
+   places the files in public/fonts/pp-mori/; without them, text falls back to Inter.
+   The brand sets everything in one weight, PP Mori 600: this face answers every weight request,
+   so bold, medium and regular all render as 600 and the browser never fakes a bolder cut. */
 @font-face {
   font-family: "PP Mori";
   src: url("/fonts/pp-mori/PPMori-600.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "PP Mori";
-  src: url("/fonts/pp-mori/PPMori-800.woff2") format("woff2");
-  font-weight: 800;
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -93,5 +79,95 @@
     --font-sans: "PP Mori", "Inter";
     --font-signature: "Caveat";
     --font-noto: "Noto Sans", "Noto Sans Korean", "Noto Sans Japanese", "Noto Sans Chinese";
+  }
+
+  /* Brand tracking: tight body copy, tighter headings. */
+  body {
+    letter-spacing: -0.01em;
+    font-synthesis: none;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Runline brand illustration (components/general/runline-illustration.tsx). Only the art moves. */
+.runline-illustration {
+  isolation: isolate;
+}
+
+.runline-illustration-cap {
+  left: 20%;
+  top: -4.44%;
+  width: 77.78%;
+  height: 77.78%;
+  transform: rotate(45deg) scaleY(0.75) skew(-13deg, -15deg);
+  transform-origin: center;
+}
+
+.runline-illustration-glow {
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(199, 92, 249, 0.55), rgba(199, 92, 249, 0));
+  filter: blur(10px);
+  animation: runline-illustration-breathe 5s ease-in-out infinite;
+}
+
+.runline-illustration-lift {
+  animation: runline-illustration-lift 5s ease-in-out infinite;
+}
+
+.runline-illustration-sweep {
+  position: absolute;
+  inset: -20% -40%;
+  z-index: 9;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.55) 50%, transparent 62%);
+  transform: translateX(-60%);
+  animation: runline-illustration-sweep 7.5s linear infinite;
+}
+
+@keyframes runline-illustration-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6.6%);
+  }
+}
+
+@keyframes runline-illustration-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes runline-illustration-sweep {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .runline-illustration-glow,
+  .runline-illustration-lift,
+  .runline-illustration-sweep {
+    animation: none;
+  }
+
+  .runline-illustration-sweep {
+    display: none;
   }
 }

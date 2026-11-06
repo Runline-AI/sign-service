@@ -40,7 +40,7 @@ export const DEFAULT_BRAND_COLORS = {
   primaryForeground: '#ffffff', // 0 0% 100%
   secondary: '#f6f6f7', // 240 5.9% 96.7%
   secondaryForeground: '#0a0a0b', // 240 4.8% 4.1%
-  accent: '#f8e4ff', // 284.4 100% 94.7%
+  accent: '#ececee', // 240 5.9% 93.1%
   accentForeground: '#0a0a0b', // 240 4.8% 4.1%
   destructive: '#ff0000', //             0 100% 50%
   destructiveForeground: '#f8fafc', //   210 40% 98%
@@ -55,4 +55,4 @@ export const DEFAULT_BRAND_COLORS = {
   // `DEFAULT_BRAND_RADIUS` below.
 } as const satisfies Record<keyof Omit<TCssVarsSchema, 'radius' | 'cardBorderTint'>, string>;
 
-export const DEFAULT_BRAND_RADIUS = '0.875rem';
+export const DEFAULT_BRAND_RADIUS = '0px';

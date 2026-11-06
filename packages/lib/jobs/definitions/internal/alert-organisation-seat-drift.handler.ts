@@ -51,6 +51,12 @@ export const run = async ({ io }: { payload: TAlertOrganisationSeatDriftJobDefin
     return;
   }
 
+  if (!SUPPORT_EMAIL) {
+    io.logger.info('No support inbox configured, skipping the seat drift alert');
+
+    return;
+  }
+
   await mailer.sendMail({
     to: SUPPORT_EMAIL,
     from: DOCUMENSO_INTERNAL_EMAIL,

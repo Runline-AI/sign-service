@@ -29,15 +29,17 @@ export const TemplateAccountDisabled = ({ assetBaseUrl, supportEmail }: Template
           <Trans>You won't be able to sign in or send documents while it is disabled.</Trans>
         </Text>
 
-        <Text className="mx-auto mt-4 mb-2 max-w-[80%] text-center text-base text-muted-foreground">
-          <Trans>
-            If you believe this was a mistake, contact us at{' '}
-            <Link href={`mailto:${supportEmail}`} className="text-primary">
-              {supportEmail}
-            </Link>
-            .
-          </Trans>
-        </Text>
+        {supportEmail && (
+          <Text className="mx-auto mt-4 mb-2 max-w-[80%] text-center text-base text-muted-foreground">
+            <Trans>
+              If you believe this was a mistake, contact us at{' '}
+              <Link href={`mailto:${supportEmail}`} className="text-primary">
+                {supportEmail}
+              </Link>
+              .
+            </Trans>
+          </Text>
+        )}
       </Section>
     </>
   );

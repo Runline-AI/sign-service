@@ -4,6 +4,8 @@ import { useLingui } from '@lingui/react';
 import { Bird, CheckCircle2, TimerOff, XCircle } from 'lucide-react';
 import { match } from 'ts-pattern';
 
+import { RunlineIllustration } from '~/components/general/runline-illustration';
+
 export type DocumentsTableEmptyStateProps = { status: ExtendedDocumentStatus };
 
 export const DocumentsTableEmptyState = ({ status }: DocumentsTableEmptyStateProps) => {
@@ -40,8 +42,8 @@ export const DocumentsTableEmptyState = ({ status }: DocumentsTableEmptyStatePro
       icon: TimerOff,
     }))
     .with(ExtendedDocumentStatus.ALL, () => ({
-      title: msg`We're all empty`,
-      message: msg`You have not yet created or received any documents. To create a document please upload one.`,
+      title: msg`Nothing here yet`,
+      message: msg`Upload a PDF to send your first document for signature. Documents sent to you show up here too.`,
       icon: Bird,
     }))
     .otherwise(() => ({
@@ -52,10 +54,14 @@ export const DocumentsTableEmptyState = ({ status }: DocumentsTableEmptyStatePro
 
   return (
     <div
-      className="flex h-60 flex-col items-center justify-center gap-y-4 text-muted-foreground/60"
+      className="flex min-h-60 flex-col items-center justify-center gap-y-4 py-8 text-muted-foreground/60"
       data-testid="empty-document-state"
     >
-      <Icon className="h-12 w-12" strokeWidth={1.5} />
+      {status === ExtendedDocumentStatus.ALL ? (
+        <RunlineIllustration className="w-72 max-w-full" />
+      ) : (
+        <Icon className="h-12 w-12" strokeWidth={1.5} />
+      )}
 
       <div className="text-center">
         <h3 className="font-semibold text-lg">{_(title)}</h3>
