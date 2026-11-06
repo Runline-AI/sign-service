@@ -93,6 +93,70 @@
   }
 }
 
+/* Runline key visual on the auth panel (warm register, brand DOS #8): a gradient block, the dash
+   pattern raining through, warm grained photography, the headline and the lockup. Values follow the
+   brand showcase (two-registers.html); corners stay square (DOS #2). */
+.runline-key-visual {
+  isolation: isolate;
+  background: linear-gradient(145deg, #c85ef9 0%, #e17afd 30%, #fbc5f0 56%, #fd9b55 100%);
+}
+
+/* Film grain over the whole frame, photos included. */
+.runline-key-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2.2' intercept='-0.6'/%3E%3CfeFuncG type='linear' slope='2.2' intercept='-0.6'/%3E%3CfeFuncB type='linear' slope='2.2' intercept='-0.6'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 170px 170px;
+}
+
+/* The brand pattern: columns of short white dashes, fading in from the left. */
+.runline-key-visual-dashes {
+  position: absolute;
+  inset: 0 0 0 44%;
+  pointer-events: none;
+  opacity: 0.82;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22'%3E%3Crect x='7.2' y='5.5' width='1.5' height='10' rx='.7' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-size: 16px 22px;
+  -webkit-mask: linear-gradient(90deg, transparent 0, #000 26%);
+  mask: linear-gradient(90deg, transparent 0, #000 26%);
+}
+
+.runline-key-visual-title {
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.045em;
+  line-height: 1.03;
+}
+
+/* The photo treatment: warm, muted, softly contrasted (the grain comes from the frame). */
+.runline-key-visual-photo {
+  position: absolute;
+  object-fit: cover;
+  box-shadow: 0 22px 55px -22px rgba(70, 20, 90, 0.55);
+  filter: saturate(0.9) contrast(0.96) brightness(1.015) sepia(0.05);
+}
+
+.runline-key-visual-photo-top {
+  top: 48px;
+  right: 48px;
+  width: 42%;
+  aspect-ratio: 4 / 3;
+  object-position: 40% center;
+}
+
+.runline-key-visual-photo-bottom {
+  bottom: 48px;
+  left: 48px;
+  width: 70%;
+  aspect-ratio: 3 / 2;
+  object-position: center 40%;
+}
+
 /* Runline brand illustration (components/general/runline-illustration.tsx). Only the art moves. */
 .runline-illustration {
   isolation: isolate;

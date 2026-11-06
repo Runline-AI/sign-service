@@ -133,14 +133,16 @@ export const OrganisationBillingBanner = () => {
                 </DialogDescription>
               </DialogHeader>
 
-              <Alert variant="neutral">
-                <AlertDescription>
-                  <Trans>
-                    If there is any issue with your subscription, please contact us at{' '}
-                    <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
-                  </Trans>
-                </AlertDescription>
-              </Alert>
+              {SUPPORT_EMAIL && (
+                <Alert variant="neutral">
+                  <AlertDescription>
+                    <Trans>
+                      If there is any issue with your subscription, please contact us at{' '}
+                      <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
+                    </Trans>
+                  </AlertDescription>
+                </Alert>
+              )}
 
               {canExecuteOrganisationAction('MANAGE_BILLING', organisation.currentOrganisationRole) && (
                 <DialogFooter>
@@ -167,14 +169,16 @@ export const OrganisationBillingBanner = () => {
                 </DialogDescription>
               </DialogHeader>
 
-              <Alert variant="neutral">
-                <AlertDescription>
-                  <Trans>
-                    If there is any issue with your subscription, please contact us at{' '}
-                    <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
-                  </Trans>
-                </AlertDescription>
-              </Alert>
+              {SUPPORT_EMAIL && (
+                <Alert variant="neutral">
+                  <AlertDescription>
+                    <Trans>
+                      If there is any issue with your subscription, please contact us at{' '}
+                      <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
+                    </Trans>
+                  </AlertDescription>
+                </Alert>
+              )}
 
               {canExecuteOrganisationAction('MANAGE_BILLING', organisation.currentOrganisationRole) && (
                 <DialogFooter>

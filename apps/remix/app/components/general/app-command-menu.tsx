@@ -437,7 +437,7 @@ export const AppCommandMenu = ({ open, onOpenChange }: AppCommandMenuProps) => {
       <DialogContent
         hideClose={true}
         overlayClassName="bg-foreground/40 backdrop-blur-[3px]"
-        className="mt-[11vh] flex max-h-[min(560px,76vh)] w-[620px] max-w-[calc(100vw-2rem)] flex-col gap-0 self-start overflow-hidden rounded-[10px] p-0 shadow-2xl sm:max-w-[620px]"
+        className="mt-[11vh] flex max-h-[min(560px,76vh)] w-[620px] max-w-[calc(100vw-2rem)] flex-col gap-0 self-start overflow-hidden rounded-none p-0 shadow-2xl sm:max-w-[620px]"
       >
         <Command
           shouldFilter={false}
@@ -597,11 +597,7 @@ export const AppCommandMenu = ({ open, onOpenChange }: AppCommandMenuProps) => {
             <span className="ml-auto text-muted-foreground text-xs">
               {hasValidSearch ? (
                 isVisibleCountCapped ? (
-                  <Plural
-                    value={totalVisibleCount}
-                    one="≥# result"
-                    other="≥# results"
-                  />
+                  <Plural value={totalVisibleCount} one="≥# result" other="≥# results" />
                 ) : (
                   <Plural value={totalVisibleCount} one="# result" other="# results" />
                 )
@@ -677,7 +673,7 @@ const HighlightedText = ({ text, query }: { text: string; query: string }) => {
   return (
     <>
       {text.slice(0, index)}
-      <mark className="rounded-[3px] bg-primary/40 text-inherit">{text.slice(index, index + query.length)}</mark>
+      <mark className="rounded-none bg-primary/40 text-inherit">{text.slice(index, index + query.length)}</mark>
       {text.slice(index + query.length)}
     </>
   );

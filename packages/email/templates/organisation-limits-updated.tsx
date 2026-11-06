@@ -48,9 +48,11 @@ export const OrganisationLimitsUpdatedEmailTemplate = ({
                 </Trans>
               </Text>
 
-              <Text className="text-center text-base">
-                <Trans>If you have any questions, please contact support at {SUPPORT_EMAIL}.</Trans>
-              </Text>
+              {SUPPORT_EMAIL && (
+                <Text className="text-center text-base">
+                  <Trans>If you have any questions, please contact support at {SUPPORT_EMAIL}.</Trans>
+                </Text>
+              )}
             </Section>
           </Container>
 

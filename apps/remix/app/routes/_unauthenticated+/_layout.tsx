@@ -1,4 +1,6 @@
-import authArt from '@documenso/assets/images/runline-auth-art.webp';
+import agreementPhoto from '@documenso/assets/images/runline-key-visual-agreement.webp';
+import reviewPhoto from '@documenso/assets/images/runline-key-visual-review.webp';
+import { Trans } from '@lingui/react/macro';
 import { Outlet } from 'react-router';
 
 import { BrandingLogo } from '~/components/general/branding-logo';
@@ -10,26 +12,45 @@ export default function Layout() {
     <div className="flex min-h-screen">
       {/*
         Brand panel (xl and up, where the form column always has room for the auth pages'
-        max-w-lg cards): the "made of code" ASCII-of-people texture from Runline's design system,
-        one texture per surface. White lockup on black, per the identity rules.
+        max-w-lg cards): Runline's key visual in the warm register (brand DOS #8). A gradient
+        block with the dash pattern raining through, warm grained photography, the headline and
+        the white lockup. Corners stay square (DOS #2). Styles live in app.css.
       */}
-      <aside className="relative hidden w-[42%] max-w-[760px] shrink-0 overflow-hidden bg-[#0a0a0b] xl:block">
+      <aside className="runline-key-visual relative hidden w-[42%] max-w-[760px] shrink-0 overflow-hidden xl:block">
+        <div className="runline-key-visual-dashes" aria-hidden="true" />
+
         <img
-          src={authArt}
+          src={reviewPhoto}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="runline-key-visual-photo runline-key-visual-photo-top"
+        />
+        <img
+          src={agreementPhoto}
+          alt=""
+          aria-hidden="true"
+          className="runline-key-visual-photo runline-key-visual-photo-bottom"
         />
 
-        <a
-          href="https://runlineai.com"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Runline"
-          className="absolute top-10 left-10"
-        >
-          <BrandingLogo className="h-7 w-auto text-white" />
-        </a>
+        <div className="absolute top-12 left-12">
+          <p className="runline-key-visual-title">
+            <Trans>
+              Put it
+              <br />
+              in writing.
+            </Trans>
+          </p>
+
+          <a
+            href="https://runlineai.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Runline"
+            className="mt-8 inline-block"
+          >
+            <BrandingLogo className="h-7 w-auto text-white" />
+          </a>
+        </div>
       </aside>
 
       <main className="relative flex flex-1 flex-col items-center justify-between overflow-hidden px-4 py-12 md:p-12">

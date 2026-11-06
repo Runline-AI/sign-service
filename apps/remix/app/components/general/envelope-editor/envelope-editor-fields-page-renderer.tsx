@@ -193,7 +193,7 @@ export const EnvelopeEditorFieldsPageRenderer = ({ pageData }: { pageData: PageR
       stroke: '#f59e0b',
       strokeWidth: 2,
       dash: [6, 4],
-      cornerRadius: 2,
+      cornerRadius: 0,
       strokeScaleEnabled: false,
       listening: false,
     } satisfies Partial<Konva.RectConfig>;

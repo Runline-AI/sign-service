@@ -124,9 +124,11 @@ module.exports = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       // Runline: UI corners are sharp. Every step follows --radius (0 by default), so org branding
-      // can still set one radius for its signing pages. rounded-full stays round for avatars.
+      // can still set one radius for its signing pages. `full` follows too, so avatars, badges and
+      // dots are square; use rounded-[50%] where a circle carries meaning (radio buttons).
       borderRadius: {
         DEFAULT: 'var(--radius)',
+        full: 'var(--radius)',
         '3xl': 'var(--radius)',
         '2xl': 'var(--radius)',
         xl: 'var(--radius)',

@@ -121,7 +121,7 @@ export const DocumentSigningFieldContainer = ({
       {!field.inserted && !loading && !readOnlyField && (
         <button
           type="submit"
-          className="absolute inset-0 z-10 h-full w-full rounded-[2px]"
+          className="absolute inset-0 z-10 h-full w-full rounded-none"
           onClick={async () => handleInsertField()}
         />
       )}
