@@ -233,9 +233,9 @@ export const OrganisationMemberInviteDialog = ({ trigger, ...props }: Organisati
 
   const downloadTemplate = () => {
     const data = [
-      { email: 'admin@documenso.com', role: 'Admin' },
-      { email: 'manager@documenso.com', role: 'Manager' },
-      { email: 'member@documenso.com', role: 'Member' },
+      { email: 'admin@example.com', role: 'Admin' },
+      { email: 'manager@example.com', role: 'Manager' },
+      { email: 'member@example.com', role: 'Member' },
     ];
 
     const csvContent = 'Email address,Role\n' + data.map((row) => `${row.email},${row.role}`).join('\n');
@@ -245,7 +245,7 @@ export const OrganisationMemberInviteDialog = ({ trigger, ...props }: Organisati
     });
 
     downloadFile({
-      filename: 'documenso-organisation-member-invites-template.csv',
+      filename: 'runline-sign-organisation-member-invites-template.csv',
       data: blob,
     });
   };
@@ -277,10 +277,14 @@ export const OrganisationMemberInviteDialog = ({ trigger, ...props }: Organisati
           <>
             <Alert className="flex flex-col justify-between p-6 sm:flex-row sm:items-center" variant="neutral">
               <AlertDescription>
-                <Trans>
-                  Your plan does not support inviting members. Please upgrade or your plan or contact sales at{' '}
-                  <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you would like to discuss your options.
-                </Trans>
+                {SUPPORT_EMAIL ? (
+                  <Trans>
+                    Your plan does not support inviting members. Please upgrade or your plan or contact sales at{' '}
+                    <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you would like to discuss your options.
+                  </Trans>
+                ) : (
+                  <Trans>Your plan does not support inviting members. Please upgrade your plan.</Trans>
+                )}
               </AlertDescription>
             </Alert>
 

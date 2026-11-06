@@ -1,18 +1,15 @@
-import signingCelebration from '@documenso/assets/images/signing-celebration.png';
 import { getOptionalSession } from '@documenso/auth/server/lib/utils/get-session';
 import { useOptionalSession } from '@documenso/lib/client-only/providers/session';
-import { isSignupEnabledForProvider } from '@documenso/lib/constants/auth';
+import { isEmailDomainAllowedForSignup, isSignupEnabledForProvider } from '@documenso/lib/constants/auth';
 import { loadRecipientBrandingByTeamId } from '@documenso/lib/server-only/branding/load-recipient-branding';
 import { getDocumentAndSenderByToken } from '@documenso/lib/server-only/document/get-document-by-token';
 import { isRecipientAuthorized } from '@documenso/lib/server-only/document/is-recipient-authorized';
 import { getFieldsForToken } from '@documenso/lib/server-only/field/get-fields-for-token';
 import { getRecipientByToken } from '@documenso/lib/server-only/recipient/get-recipient-by-token';
-import { getRecipientSignatures } from '@documenso/lib/server-only/recipient/get-recipient-signatures';
 import { getUserByEmail } from '@documenso/lib/server-only/user/get-user-by-email';
 import { isDocumentCompleted } from '@documenso/lib/utils/document';
 import { trpc } from '@documenso/trpc/react';
 import { DocumentShareButton } from '@documenso/ui/components/document/document-share-button';
-import { SigningCard3D } from '@documenso/ui/components/signing-card';
 import { cn } from '@documenso/ui/lib/utils';
 import { Badge } from '@documenso/ui/primitives/badge';
 import { Button } from '@documenso/ui/primitives/button';
@@ -27,6 +24,7 @@ import { EnvelopeDownloadDialog } from '~/components/dialogs/envelope-download-d
 import { ClaimAccount } from '~/components/general/claim-account';
 import { DocumentSigningAuthPageView } from '~/components/general/document-signing/document-signing-auth-page';
 import { RecipientBranding } from '~/components/general/recipient-branding';
+import { RunlineIllustration } from '~/components/general/runline-illustration';
 import { useCspNonce } from '~/utils/nonce';
 
 import type { Route } from './+types/complete';
@@ -75,7 +73,6 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     } as const;
   }
 
-  const signatures = await getRecipientSignatures({ recipientId: recipient.id });
   const isExistingUser = await getUserByEmail({ email: recipient.email })
     .then((u) => !!u)
     .catch(() => false);
@@ -83,7 +80,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const recipientName =
     recipient.name || fields.find((field) => field.type === FieldType.NAME)?.customText || recipient.email;
 
-  const canSignUp = !isExistingUser && isSignupEnabledForProvider('email');
+  // Only offer an account to recipients whose email domain is allowed to sign up. Runline limits
+  // sign-ups to its own domain, so external signers would otherwise get a form that always fails.
+  const canSignUp =
+    !isExistingUser && isSignupEnabledForProvider('email') && isEmailDomainAllowedForSignup(recipient.email);
 
   const canRedirectToFolder = user && document.userId === user.id && document.folderId && document.team?.url;
 
@@ -94,7 +94,6 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     canSignUp,
     recipientName,
     recipientEmail: recipient.email,
-    signatures,
     document,
     recipient,
     returnToHomePath,
@@ -113,7 +112,6 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
     isDocumentAccessValid,
     canSignUp,
     recipientName,
-    signatures,
     document,
     recipient,
     recipientEmail,
@@ -174,12 +172,7 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
               </span>
             </Badge>
 
-            {/* Card with recipient */}
-            <SigningCard3D
-              name={recipientName}
-              signature={signatures.at(0)}
-              signingCelebrationImage={signingCelebration}
-            />
+            <RunlineIllustration className="w-full max-w-md" />
 
             <h2 className="mt-6 max-w-[35ch] text-center font-semibold text-2xl leading-normal md:text-3xl lg:text-4xl">
               {recipient.role === RecipientRole.SIGNER && <Trans>Document Signed</Trans>}
@@ -284,11 +277,11 @@ export default function CompletedSigningPage({ loaderData }: Route.ComponentProp
             {canSignUp && (
               <div className="flex max-w-xl flex-col items-center justify-center p-4 md:p-12">
                 <h2 className="mt-8 text-center font-semibold text-xl md:mt-0">
-                  <Trans>Need to sign documents?</Trans>
+                  <Trans>Set up your account</Trans>
                 </h2>
 
                 <p className="mt-4 max-w-[55ch] text-center text-muted-foreground/60 leading-normal">
-                  <Trans>Create your account and start using state-of-the-art document signing.</Trans>
+                  <Trans>Send your own documents for signature and keep every signed copy in one place.</Trans>
                 </p>
 
                 <ClaimAccount defaultName={recipientName} defaultEmail={recipient.email} />

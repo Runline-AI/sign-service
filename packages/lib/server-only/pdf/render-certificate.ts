@@ -335,7 +335,7 @@ const renderColumnTwo = (options: RenderColumnOptions) => {
       height: signatureHeight,
       stroke: 'rgba(122, 196, 85, 0.6)',
       strokeWidth: 1,
-      cornerRadius: 8,
+      cornerRadius: 0,
     });
     signatureContainer.add(signatureBorder);
 
@@ -346,7 +346,7 @@ const renderColumnTwo = (options: RenderColumnOptions) => {
       height: signatureHeight + 4,
       stroke: 'rgba(122, 196, 85, 0.1)',
       strokeWidth: 4,
-      cornerRadius: 8,
+      cornerRadius: 0,
     });
     signatureContainer.add(signatureShadow);
 
@@ -705,7 +705,7 @@ const renderTables = (options: RenderTablesOptions) => {
       height: tableClientRect.height,
       stroke: '#e5e7eb',
       strokeWidth: 1.5,
-      cornerRadius: 8,
+      cornerRadius: 0,
     });
     table.add(cardRect);
 

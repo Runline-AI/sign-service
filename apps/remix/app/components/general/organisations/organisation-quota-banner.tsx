@@ -98,14 +98,18 @@ export const OrganisationQuotaBanner = () => {
 
             <DialogDescription>
               {isAnyQuotaExceeded ? (
-                <Trans>
-                  Your organisation has exceeded a fair use limit. Please contact{' '}
-                  <a className="text-primary" href={`mailto:${SUPPORT_EMAIL}`}>
-                    support
-                  </a>{' '}
-                  to review your plan's limits.
-                </Trans>
-              ) : (
+                SUPPORT_EMAIL ? (
+                  <Trans>
+                    Your organisation has exceeded a fair use limit. Please contact{' '}
+                    <a className="text-primary" href={`mailto:${SUPPORT_EMAIL}`}>
+                      support
+                    </a>{' '}
+                    to review your plan's limits.
+                  </Trans>
+                ) : (
+                  <Trans>Your organisation has exceeded a fair use limit.</Trans>
+                )
+              ) : SUPPORT_EMAIL ? (
                 <Trans>
                   Your organisation is approaching a fair use limit. If you expect to need higher limits, please contact{' '}
                   <a className="text-primary" href={`mailto:${SUPPORT_EMAIL}`}>
@@ -113,6 +117,8 @@ export const OrganisationQuotaBanner = () => {
                   </a>{' '}
                   to review your plan's limits.
                 </Trans>
+              ) : (
+                <Trans>Your organisation is approaching a fair use limit.</Trans>
               )}
             </DialogDescription>
           </DialogHeader>

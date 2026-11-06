@@ -57,6 +57,21 @@ const buildEmailColors = (brandingColors?: EmailBrandingColors): Record<string, 
   };
 };
 
+/**
+ * Runline: email corners are square, like the app (brand radius 0).
+ */
+const EMAIL_BORDER_RADIUS = {
+  none: '0px',
+  sm: '0px',
+  DEFAULT: '0px',
+  md: '0px',
+  lg: '0px',
+  xl: '0px',
+  '2xl': '0px',
+  '3xl': '0px',
+  full: '0px',
+};
+
 export const render = async (element: React.ReactNode, options?: RenderOptions) => {
   const { branding, ...otherOptions } = options ?? {};
 
@@ -69,6 +84,7 @@ export const render = async (element: React.ReactNode, options?: RenderOptions) 
           theme: {
             extend: {
               colors: tailwindColors,
+              borderRadius: EMAIL_BORDER_RADIUS,
             },
           },
         }}
@@ -97,6 +113,7 @@ export const renderWithI18N = async (element: React.ReactNode, options?: RenderO
             theme: {
               extend: {
                 colors: tailwindColors,
+                borderRadius: EMAIL_BORDER_RADIUS,
               },
             },
           }}

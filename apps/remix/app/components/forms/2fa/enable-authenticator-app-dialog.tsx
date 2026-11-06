@@ -111,7 +111,7 @@ export const EnableAuthenticatorAppDialog = ({ onSuccess }: EnableAuthenticatorA
       });
 
       downloadFile({
-        filename: 'documenso-2FA-recovery-codes.txt',
+        filename: 'runline-sign-2FA-recovery-codes.txt',
         data: blob,
       });
     }

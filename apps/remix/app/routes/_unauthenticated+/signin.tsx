@@ -129,7 +129,7 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
         </h1>
 
         <p className="mt-2 text-muted-foreground text-sm">
-          <Trans>Welcome back, we are lucky to have you.</Trans>
+          <Trans>Welcome back. Your documents are where you left them.</Trans>
         </p>
         <hr className="-mx-6 my-4" />
 

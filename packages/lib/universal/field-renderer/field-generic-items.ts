@@ -60,7 +60,7 @@ export const upsertFieldRect = (field: FieldToRender, options: RenderFieldElemen
     fill: fieldCanvasStyle?.backgroundColor ?? DEFAULT_RECT_BACKGROUND,
     stroke: fieldCanvasStyle?.borderColor ?? (color ? getRecipientColorStyles(color).baseRing : '#e5e7eb'),
     strokeWidth: fieldCanvasStyle?.borderWidth ?? 2,
-    cornerRadius: fieldCanvasStyle?.borderRadius ?? 2,
+    cornerRadius: fieldCanvasStyle?.borderRadius ?? 0,
     strokeScaleEnabled: false,
     visible: mode !== 'export',
   } satisfies Partial<Konva.RectConfig>);

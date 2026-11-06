@@ -15,7 +15,7 @@ export type ResetPasswordTemplateProps = Partial<TemplateResetPasswordProps> & {
 
 export const ResetPasswordTemplate = ({
   userName = 'Lucas Smith',
-  userEmail = 'lucas@documenso.com',
+  userEmail = 'lucas@example.com',
   assetBaseUrl = 'http://localhost:3002',
   source = 'RESET',
 }: ResetPasswordTemplateProps) => {
@@ -57,11 +57,7 @@ export const ResetPasswordTemplate = ({
                   </Text>
                   <Text className="mt-2 text-base text-muted-foreground">
                     <Trans>
-                      Didn't request a password change? We are here to help you secure your account, just{' '}
-                      <Link className="font-normal text-primary" href="mailto:hi@documenso.com">
-                        contact us
-                      </Link>
-                      .
+                      Didn't request a password change? Reset your password right away and tell your organisation admin.
                     </Trans>
                   </Text>
                 </>
@@ -72,11 +68,8 @@ export const ResetPasswordTemplate = ({
                   </Text>
                   <Text className="mt-2 text-base text-muted-foreground">
                     <Trans>
-                      If this was you, no action is needed. If it wasn't, reset your password immediately and{' '}
-                      <Link className="font-normal text-primary" href="mailto:hi@documenso.com">
-                        contact us
-                      </Link>
-                      .
+                      If this was you, no action is needed. If it wasn't, reset your password immediately and tell your
+                      organisation admin.
                     </Trans>
                   </Text>
                 </>

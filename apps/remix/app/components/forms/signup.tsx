@@ -32,7 +32,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { z } from 'zod';
 
-
 export const ZSignUpFormSchema = z
   .object({
     name: ZNameSchema,
@@ -227,10 +226,7 @@ export const SignUpForm = ({
           </h1>
 
           <p className="mt-2 text-muted-foreground text-xs md:text-sm">
-            <Trans>
-              Create your account and start using state-of-the-art document signing. Open and beautiful signing is
-              within your grasp.
-            </Trans>
+            <Trans>Send documents for signature and keep every signed copy in one place.</Trans>
           </p>
         </div>
 

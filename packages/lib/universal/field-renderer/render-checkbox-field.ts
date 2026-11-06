@@ -166,7 +166,7 @@ export const renderCheckboxFieldElement = (field: FieldToRender, options: Render
       height: itemSize,
       stroke: '#374151',
       strokeWidth: 1.5,
-      cornerRadius: 2,
+      cornerRadius: 0,
       fill: 'white',
     });
 

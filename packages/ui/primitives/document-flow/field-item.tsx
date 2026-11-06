@@ -284,12 +284,12 @@ const FieldItemInner = ({
 
       <div
         className={cn(
-          'group/field-item relative flex h-full w-full items-center justify-center rounded-[2px] bg-white/90 px-2 ring-2 transition-colors',
+          'group/field-item relative flex h-full w-full items-center justify-center rounded-none bg-white/90 px-2 ring-2 transition-colors',
           !hasErrors && signerStyles.base,
           !hasErrors && signerStyles.fieldItem,
           fieldClassName,
           {
-            'rounded-[2px] border bg-red-400/20 shadow-[0_0_0_5px_theme(colors.red.500/10%),0_0_0_2px_theme(colors.red.500/40%),0_0_0_0.5px_theme(colors.red.500)] ring-red-400':
+            'rounded-none border bg-red-400/20 shadow-[0_0_0_5px_theme(colors.red.500/10%),0_0_0_2px_theme(colors.red.500/40%),0_0_0_0.5px_theme(colors.red.500)] ring-red-400':
               hasErrors,
           },
           !fixedSize && '[container-type:size]',

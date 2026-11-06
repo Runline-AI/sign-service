@@ -1,12 +1,12 @@
-import backgroundPattern from '@documenso/assets/images/background-pattern.png';
 import { Button } from '@documenso/ui/primitives/button';
 import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
-import { motion } from 'framer-motion';
 import { ChevronLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router';
+
+import { RunlineIllustration } from './runline-illustration';
 
 type ErrorCodeMap = Record<
   number,
@@ -34,14 +34,14 @@ export type GenericErrorLayoutProps = {
 
 export const defaultErrorCodeMap: ErrorCodeMap = {
   404: {
-    subHeading: msg`404 not found`,
-    heading: msg`Oops! Something went wrong.`,
-    message: msg`The page you are looking for was moved, removed, renamed or might never have existed.`,
+    subHeading: msg`404`,
+    heading: msg`This page isn't here`,
+    message: msg`The link may be old, or the page may have moved. Check the address and try again.`,
   },
   500: {
-    subHeading: msg`500 Internal Server Error`,
-    heading: msg`Oops! Something went wrong.`,
-    message: msg`An unexpected error occurred.`,
+    subHeading: msg`500`,
+    heading: msg`Something broke on our end`,
+    message: msg`Try again in a minute. If it keeps happening, contact the person who sent you the link.`,
   },
 };
 
@@ -58,27 +58,11 @@ export const GenericErrorLayout = ({
   const { subHeading, heading, message } = errorCodeMap[errorCode || 500] ?? defaultErrorCodeMap[500];
 
   return (
-    <div className="fixed inset-0 z-0 flex h-screen w-screen items-center justify-center">
-      <div className="absolute -inset-24 -z-10">
-        <motion.div
-          className="flex h-full w-full items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.8, transition: { duration: 0.5, delay: 0.5 } }}
-        >
-          <img
-            src={backgroundPattern}
-            alt="background pattern"
-            className="-mt-[15vh] -ml-[50vw] h-full scale-100 object-cover md:scale-100 lg:scale-[100%] dark:contrast-[70%] dark:invert dark:sepia"
-            style={{
-              mask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-              WebkitMask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-            }}
-          />
-        </motion.div>
-      </div>
+    <div className="fixed inset-0 z-0 flex h-screen w-screen overflow-y-auto">
+      <div className="m-auto flex w-full max-w-5xl flex-col items-center justify-center gap-10 px-6 py-16 md:flex-row md:gap-16">
+        <RunlineIllustration className="w-full max-w-sm md:max-w-md" />
 
-      <div className="inset-0 mx-auto flex h-full flex-grow items-center justify-center px-6 py-32">
-        <div>
+        <div className="w-full max-w-md">
           <p className="font-semibold text-muted-foreground">{_(subHeading)}</p>
 
           <h1 className="mt-3 font-bold text-2xl md:text-3xl">{_(heading)}</h1>
