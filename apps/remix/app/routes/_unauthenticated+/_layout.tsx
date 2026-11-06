@@ -9,10 +9,11 @@ export default function Layout() {
   return (
     <div className="flex min-h-screen">
       {/*
-        Brand panel (desktop): the "made of code" ASCII-of-people texture from Runline's design
-        system, one texture per surface. White lockup on black, per the identity rules.
+        Brand panel (xl and up, where the form column always has room for the auth pages'
+        max-w-lg cards): the "made of code" ASCII-of-people texture from Runline's design system,
+        one texture per surface. White lockup on black, per the identity rules.
       */}
-      <aside className="relative hidden w-[42%] max-w-[760px] shrink-0 overflow-hidden bg-[#0a0a0b] lg:block">
+      <aside className="relative hidden w-[42%] max-w-[760px] shrink-0 overflow-hidden bg-[#0a0a0b] xl:block">
         <img
           src={authArt}
           alt=""
@@ -33,7 +34,7 @@ export default function Layout() {
 
       <main className="relative flex flex-1 flex-col items-center justify-between overflow-hidden px-4 py-12 md:p-12">
         <div className="flex w-full flex-1 flex-col items-center justify-center">
-          <BrandingLogo className="mb-10 h-8 w-auto text-foreground lg:hidden" />
+          <BrandingLogo className="mb-10 h-8 w-auto text-foreground xl:hidden" />
 
           <div className="relative flex w-full items-center justify-center">
             <Outlet />
