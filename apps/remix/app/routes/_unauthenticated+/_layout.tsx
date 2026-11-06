@@ -1,34 +1,51 @@
-import backgroundPattern from '@documenso/assets/images/background-pattern.png';
+import authArt from '@documenso/assets/images/runline-auth-art.webp';
 import { Outlet } from 'react-router';
 
+import { BrandingLogo } from '~/components/general/branding-logo';
 import { PublicLegalLinks } from '~/components/general/public-legal-links';
 import { SourceAttribution } from '~/components/general/source-attribution';
 
 export default function Layout() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden px-4 py-12 md:p-12 lg:p-24">
-      <div className="flex w-full flex-1 flex-col items-center justify-center">
-        <div className="absolute -inset-[min(600px,max(400px,60vw))] -z-[1] flex items-center justify-center opacity-70">
-          <img
-            src={backgroundPattern}
-            alt="background pattern"
-            className="dark:brightness-95 dark:contrast-[70%] dark:invert dark:sepia"
-            style={{
-              mask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-              WebkitMask: 'radial-gradient(rgba(255, 255, 255, 1) 0%, transparent 80%)',
-            }}
-          />
+    <div className="flex min-h-screen">
+      {/*
+        Brand panel (xl and up, where the form column always has room for the auth pages'
+        max-w-lg cards): the "made of code" ASCII-of-people texture from Runline's design system,
+        one texture per surface. White lockup on black, per the identity rules.
+      */}
+      <aside className="relative hidden w-[42%] max-w-[760px] shrink-0 overflow-hidden bg-[#0a0a0b] xl:block">
+        <img
+          src={authArt}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+
+        <a
+          href="https://runlineai.com"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Runline"
+          className="absolute top-10 left-10"
+        >
+          <BrandingLogo className="h-7 w-auto text-white" />
+        </a>
+      </aside>
+
+      <main className="relative flex flex-1 flex-col items-center justify-between overflow-hidden px-4 py-12 md:p-12">
+        <div className="flex w-full flex-1 flex-col items-center justify-center">
+          <BrandingLogo className="mb-10 h-8 w-auto text-foreground xl:hidden" />
+
+          <div className="relative flex w-full items-center justify-center">
+            <Outlet />
+          </div>
         </div>
 
-        <div className="relative w-full flex items-center justify-center">
-          <Outlet />
-        </div>
-      </div>
-
-      <footer className="z-10 mt-8 w-full">
-        <PublicLegalLinks />
-        <SourceAttribution className="mt-4" />
-      </footer>
-    </main>
+        <footer className="z-10 mt-8 w-full">
+          <PublicLegalLinks />
+          <SourceAttribution className="mt-4" />
+        </footer>
+      </main>
+    </div>
   );
 }

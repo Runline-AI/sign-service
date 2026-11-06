@@ -62,9 +62,35 @@
   font-display: swap;
 }
 
+/* PP Mori (Pangram Pangram) is licensed to Runline and is NOT in this public repo. Runline's deploy
+   places the files in public/fonts/pp-mori/; without them, text falls back to Inter. */
+@font-face {
+  font-family: "PP Mori";
+  src: url("/fonts/pp-mori/PPMori-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Mori";
+  src: url("/fonts/pp-mori/PPMori-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Mori";
+  src: url("/fonts/pp-mori/PPMori-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
-    --font-sans: "Inter";
+    --font-sans: "PP Mori", "Inter";
     --font-signature: "Caveat";
     --font-noto: "Noto Sans", "Noto Sans Korean", "Noto Sans Japanese", "Noto Sans Chinese";
   }
