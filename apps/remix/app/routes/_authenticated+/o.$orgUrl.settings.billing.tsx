@@ -30,9 +30,14 @@ export default function TeamsSettingBillingPage() {
   const utils = trpc.useUtils();
 
   const { data: subscriptionQuery, isLoading: isLoadingSubscription } =
-    trpc.enterprise.billing.subscription.get.useQuery({
-      organisationId: organisation.id,
-    });
+    trpc.enterprise.billing.subscription.get.useQuery(
+      {
+        organisationId: organisation.id,
+      },
+      {
+        enabled: IS_BILLING_ENABLED(),
+      },
+    );
 
   const { mutateAsync: syncSubscription, isPending: isSyncingSubscription } =
     trpc.enterprise.billing.subscription.sync.useMutation();
@@ -70,6 +75,20 @@ export default function TeamsSettingBillingPage() {
       });
   }, [isCheckoutSuccess, organisation.id]);
 
+  // Self-hosted (billing off): there are no plans or billing, and the billing API is disabled.
+  if (!IS_BILLING_ENABLED()) {
+    return (
+      <div>
+        <h3 className="font-semibold text-2xl">
+          <Trans>Billing</Trans>
+        </h3>
+        <p className="mt-2 text-muted-foreground text-sm">
+          <Trans>This is a self-hosted instance, so there is no plan or billing.</Trans>
+        </p>
+      </div>
+    );
+  }
+
   if (isLoadingSubscription || !subscriptionQuery || isSyncingSubscription) {
     return (
       <div className="flex items-center justify-center rounded-lg py-32">
@@ -97,13 +116,7 @@ export default function TeamsSettingBillingPage() {
           </h3>
 
           <div className="mt-2 text-muted-foreground text-sm">
-            {!organisationSubscription && !IS_BILLING_ENABLED() && (
-              <p>
-                <Trans>This is a self-hosted instance, so there is no plan or billing.</Trans>
-              </p>
-            )}
-
-            {!organisationSubscription && IS_BILLING_ENABLED() && (
+            {!organisationSubscription && (
               <p>
                 <Trans>
                   You are currently on the <span className="font-semibold">Free Plan</span>.
